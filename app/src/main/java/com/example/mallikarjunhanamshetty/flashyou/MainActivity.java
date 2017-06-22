@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.hardware.camera2.CameraManager;
-import android.media.MediaPlayer;
 import android.os.Build;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -25,14 +24,14 @@ public class MainActivity extends AppCompatActivity {
     private String mCameraId;
     private Button mTorchOnOffButton;
     private Boolean isTorchOn;
-    private MediaPlayer mp;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mTorchOnOffButton = (Button) findViewById(R.id.btnStart);
+        mTorchOnOffButton = (Button) findViewById(R.id.mTorchOnOffButton);
 
         isTorchOn= false;
         Boolean isFlashAvailable = getApplicationContext().getPackageManager()
@@ -69,6 +68,11 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
 
+
+                    /*
+                    Can be made as utility method to avoid execution everytime
+
+                     */
 
                     checkAndRequestPermissions(MainActivity.this);
 
