@@ -15,4 +15,13 @@
        android:background="@drawable/green2"
        />
 
+   <Button
+       android:layout_width="100dp"
+       android:layout_height="100dp"
+       android:id="@+id/sos"
+       android:background="@drawable/sosblack"
+       android:layout_below="@+id/mTorchOnOffButton"
+       android:layout_centerHorizontal="true"
+       android:layout_marginTop="23dp" />
+
 </RelativeLayout>

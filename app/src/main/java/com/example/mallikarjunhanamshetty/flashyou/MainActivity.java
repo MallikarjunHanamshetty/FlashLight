@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private CameraManager mCameraManager;
     private String mCameraId;
     private Button mTorchOnOffButton;
+    private Button sosButton;
     private Boolean isTorchOn;
 
 
@@ -32,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mTorchOnOffButton = (Button) findViewById(R.id.mTorchOnOffButton);
-
+        sosButton =(Button) findViewById(R.id.sos);
         isTorchOn= false;
         Boolean isFlashAvailable = getApplicationContext().getPackageManager()
                 .hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH);
@@ -96,11 +97,45 @@ public class MainActivity extends AppCompatActivity {
 
 
         }
+
+        sosButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                sosMode();
+            }
+        });
+
+
+    }
+
+
+
+    public void sosMode()
+    {
+        String myString = "0101010101";
+        long blinkDelay = 50; //Delay in ms
+        for (int i = 0; i < myString.length(); i++) {
+            try {
+                if (myString.charAt(i) == '0') {
+                    mCameraManager.setTorchMode(mCameraId, true);
+                } else {
+                    mCameraManager.setTorchMode(mCameraId, false);
+                }
+                try {
+                    Thread.sleep(blinkDelay);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            catch (Exception ex)
+            {
+                ex.printStackTrace();
+            }
+
         }
 
-
-
-
+    }
 
 
     public void turnOnFlashLight() {
@@ -162,7 +197,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-}
+    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode,
@@ -191,5 +226,5 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    }
+}
 
